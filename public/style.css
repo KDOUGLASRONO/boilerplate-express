@@ -14,3 +14,11 @@ h1 {
 input[type=text], label {
   margin-bottom: 8px;
 }
+.phot{
+  background-color: wheat;
+  grid-gap:2em;
+  display:grid;
+  grid-template-columns:auto auto auto;
+  padding:2em;
+  border-radius: 2em;
+}
