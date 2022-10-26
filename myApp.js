@@ -14,6 +14,13 @@ app.use('/public', express.static(__dirname + "/public"));
 
 //Implement a Root-Level Request Logger Middleware
 app.use(function(req,res,next){
+    //we haven't added path so it runs on all directories
+    console.log(req.method, req.path, " - ", req.ip);
+    next();
+})
+
+//to run on root directory only
+app.use("/", function(req,res,next){
     console.log(req.method, req.path, " - ", req.ip);
     next();
 })
@@ -36,9 +43,19 @@ app.get("/json",function(req,res){
     else{
         return res.json({"message":"Hello json"});
     }
-})
-
-
+});
+//chain middleware and create a timeserver, chaining functions
+function timeNow(){
+    return new Date().toString();
+}
+app.get("/now",function(req,res,next){
+    req.time = timeNow();
+    next();
+},
+    function(req,res){
+        res.json({time: req.time});
+    }
+);
 
 
 
