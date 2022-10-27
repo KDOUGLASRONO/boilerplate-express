@@ -75,6 +75,14 @@ app.get("/:word/echo",function(req,res){
     //res.json({name:req.query.first + " " + req.query.last}); also works
     res.json({name:`${firstName} ${lastName}`})
  });
+ //get data from post request
+ app.post("/name",function(req,res){
+    var firstName = req.body.first;
+    var lastName = req.body.last;
+
+    res.json({name:firstName + " " + lastName});
+
+ })
  
 
 
