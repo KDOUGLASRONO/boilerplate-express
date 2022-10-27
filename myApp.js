@@ -1,10 +1,15 @@
 require('dotenv').config();
+const bodyParser = require('body-parser');
 let express = require('express');
 let app = express();
+
 
 //app.use(express.static(__dirname + "/public"));
 //serving a static assets(photos,styles,etc);
 app.use('/public', express.static(__dirname + "/public"));
+//use body parser to pass POST request
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
 
 //also works
 //app.use('/public/style.css', express.static(__dirname + "/public/style.css"));
@@ -69,7 +74,9 @@ app.get("/:word/echo",function(req,res){
     //res.json({name:Object.values(req.query)}); trying out
     //res.json({name:req.query.first + " " + req.query.last}); also works
     res.json({name:`${firstName} ${lastName}`})
- })
+ });
+ 
+
 
 
 
