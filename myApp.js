@@ -61,8 +61,15 @@ app.get("/:word/echo",function(req,res){
     res.json({echo: req.params.word});
     //res.json({echo: req.params}) ==>> res {"echo":{"word":"word","echo":"echo"}}
 });
-
-
+//get query parameter input from client
+//encode the data after the root path
+ app.get("/name",function(req,res){
+    var firstName = req.query.first;
+    var lastName = req.query.last;
+    //res.json({name:Object.values(req.query)}); trying out
+    //res.json({name:req.query.first + " " + req.query.last}); also works
+    res.json({name:`${firstName} ${lastName}`})
+ })
 
 
 
